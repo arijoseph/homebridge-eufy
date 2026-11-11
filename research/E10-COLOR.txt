@@ -1,0 +1,18 @@
+E10 color integration investigation — 2026-11-11
+Base: f8e06ef7c27a1fd3749cbf5d697f567fa5b73b08 (5.0.0-beta.47)
+
+The smart-light adapter already supports HomeKit Hue and Saturation through
+light.setColor when the SDK capability evidence exposes that method.
+The current missing support for T8L20/T8L30 belongs primarily in eufy-sdk.
+Companion local branch: ../eufy-sdk, investigate-e10-color.
+Evidence and reproducible offline app-code index: research/e10-color there.
+
+After the SDK has model-specific payloads with tests and physical validation:
+- Pin the reviewed SDK fork revision/build in this plugin fork.
+- Run adapter tests verifying Hue/Saturation appear only on supported models.
+- Retain rejection for invalid input and unsupported devices.
+- Preserve the distinction between last acknowledged color and observed RGB.
+- Build and validate in an isolated bridge before updating the running bridge.
+
+No production code, account settings, pairing identities or devices changed.
+GitHub fork: https://github.com/arijoseph/homebridge-eufy
